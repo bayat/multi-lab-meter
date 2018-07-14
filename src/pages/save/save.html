@@ -25,12 +25,11 @@
 
     <ion-item>
       <ion-label floating>Дата</ion-label>
-      <ion-datetime
-        displayFormat="DD/MM/YYYY"
-        [cancelText]="'Отмена'"
-        [doneText]="'Готово'"
-        [(ngModel)]="person.dt"
-      ></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY"
+                    [cancelText]="'Отмена'"
+                    [doneText]="'Готово'"
+                    [(ngModel)]="person.dt">
+      </ion-datetime>
     </ion-item>
 
   </ion-list>
