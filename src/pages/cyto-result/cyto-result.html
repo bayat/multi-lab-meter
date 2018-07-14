@@ -1,6 +1,9 @@
 <ion-header>
   <ion-navbar color="primary" [hideBackButton]="true">
     <ion-title>Результаты</ion-title>
+    <ion-buttons *ngIf="!saved" end>
+      <button ion-button (click)="openSavePage()">Сохранить</button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 <ion-content padding>

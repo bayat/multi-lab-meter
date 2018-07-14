@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {CytoResultPage} from '../cyto-result/cyto-result';
 import {BecIndicator} from '../../models/bec-indicator.model';
-import {BecIndicators} from '../../data/bec-data';
+import {BecIndicators} from '../../data/bec.data';
 
 @Component({
   selector: 'cyto-page',
@@ -36,7 +36,7 @@ export class CytoPage {
 
   checkFinish() {
     if (this.counter == 10) {
-      this.navCtrl.push(CytoResultPage, {data: this.results});
+      this.navCtrl.push(CytoResultPage, {data: this.results, saved: false});
     }
   }
 

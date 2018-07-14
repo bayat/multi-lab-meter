@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {BecIndicator} from '../../models/bec-indicator.model';
-import {BecIndicators} from '../../data/bec-data';
+import {BecIndicators} from '../../data/bec.data';
+import {SavePage} from '../save/save';
+import {TypeResearch} from '../../enums/type-research';
 
 @Component({
   selector: 'cyto-result-page',
@@ -11,6 +13,7 @@ export class CytoResultPage implements OnInit {
   data: any;
   becIndicators: BecIndicator[] = BecIndicators;
   showResult = false;
+  saved: boolean;
 
   constructor(public navCtrl: NavController,
               private navParams: NavParams) {
@@ -18,6 +21,7 @@ export class CytoResultPage implements OnInit {
 
   ngOnInit() {
     this.data = this.navParams.get('data');
+    this.saved = this.navParams.get('saved');
     this.setValues();
   }
 
@@ -38,5 +42,9 @@ export class CytoResultPage implements OnInit {
     } else {
       return 'primary';
     }
+  }
+
+  openSavePage() {
+    this.navCtrl.push(SavePage, {data: this.becIndicators, type: TypeResearch.CYTO})
   }
 }
