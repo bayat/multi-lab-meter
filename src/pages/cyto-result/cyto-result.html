@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar color="primary" [hideBackButton]="true">
+    <ion-title>Результаты</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-list *ngIf="showResult">
+    <ion-item *ngFor="let i of becIndicators">
+      <ion-thumbnail item-start>
+        <img src="{{i.img}}">
+      </ion-thumbnail>
+      <ion-row>
+        <ion-col col-9>
+          <h2 text-wrap>{{i.title}}</h2>
+        </ion-col>
+        <ion-col col-3 text-right>
+          <ion-badge [color]="getColorByItem(i)">{{i.value}}</ion-badge>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-list>
+</ion-content>

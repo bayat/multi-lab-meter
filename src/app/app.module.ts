@@ -10,7 +10,7 @@ import {CytoPage} from '../pages/cyto/cyto';
 import {MyeloPage} from '../pages/myelo/myelo';
 import {LeycoPage} from '../pages/leyco/leyco';
 import {ArchivePage} from '../pages/archive/archive';
-import {ResultPage} from '../pages/result/result';
+import {CytoResultPage} from '../pages/cyto-result/cyto-result';
 import {SavePage} from '../pages/save/save';
 
 @NgModule({
@@ -21,7 +21,7 @@ import {SavePage} from '../pages/save/save';
     MyeloPage,
     LeycoPage,
     ArchivePage,
-    ResultPage,
+    CytoResultPage,
     SavePage
   ],
   imports: [
@@ -36,7 +36,7 @@ import {SavePage} from '../pages/save/save';
     MyeloPage,
     LeycoPage,
     ArchivePage,
-    ResultPage,
+    CytoResultPage,
     SavePage
   ],
   providers: [
