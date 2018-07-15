@@ -30,6 +30,7 @@ export class SavePage implements OnInit {
 
   save() {
     console.log(this.person, 'person');
+    this.navCtrl.popToRoot();
   }
 
 }
