@@ -13,6 +13,7 @@ import {LeycoPage} from '../pages/leyco/leyco';
 import {ArchivePage} from '../pages/archive/archive';
 import {CytoResultPage} from '../pages/cyto-result/cyto-result';
 import {SavePage} from '../pages/save/save';
+import {SQLite} from '@ionic-native/sqlite';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {SavePage} from '../pages/save/save';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    SQLite
   ]
 })
 export class AppModule {
