@@ -15,6 +15,7 @@ import {CytoResultPage} from '../pages/cyto-result/cyto-result';
 import {SavePage} from '../pages/save/save';
 import {SQLite} from '@ionic-native/sqlite';
 import {DbService} from '../services/db.service';
+import {SQLiteMock} from '../services/sqlite-object';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {DbService} from '../services/db.service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SQLite,
+    //SQLite,
+    {provide: SQLite, useClass: SQLiteMock},
     DbService
   ]
 })

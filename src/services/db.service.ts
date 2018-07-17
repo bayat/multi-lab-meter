@@ -1,7 +1,5 @@
 import {Injectable} from '@angular/core';
 import {SQLite, SQLiteObject} from '@ionic-native/sqlite';
-import {Person} from '../models/person.model';
-import {BecIndicator} from '../models/bec-indicator.model';
 
 @Injectable()
 export class DbService {
@@ -9,6 +7,10 @@ export class DbService {
 
   constructor(private sqlite: SQLite) {
     this.initDb();
+  }
+
+  getDb(): SQLiteObject {
+    return this.db;
   }
 
   initDb() {
@@ -32,7 +34,7 @@ export class DbService {
           .catch(e => console.log(e));
 
         db.executeSql(`
-          CREATE TABLE IF NOT EXIST cyto(
+          CREATE TABLE IF NOT EXISTS cyto(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             researchId INTEGER NOT NULL,
             col1 INTEGER NOT NULL,
@@ -54,10 +56,5 @@ export class DbService {
       })
       .catch(e => console.log(e));
   }
-
-  addCytoResearch(researchData: Person, cytoData: BecIndicator[]) {
-    console.log(this.db, 'db');
-  }
-
 
 }
