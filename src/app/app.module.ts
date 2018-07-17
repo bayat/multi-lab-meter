@@ -14,6 +14,7 @@ import {ArchivePage} from '../pages/archive/archive';
 import {CytoResultPage} from '../pages/cyto-result/cyto-result';
 import {SavePage} from '../pages/save/save';
 import {SQLite} from '@ionic-native/sqlite';
+import {DbService} from '../services/db.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {SQLite} from '@ionic-native/sqlite';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SQLite
+    SQLite,
+    DbService
   ]
 })
 export class AppModule {
