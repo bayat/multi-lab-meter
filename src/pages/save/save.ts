@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
-import {TypeResearch} from '../../enums/type-research';
-import {Person} from '../../models/person.model';
+import {ResearchType} from '../../enums/research-type.enum';
+import {Research} from '../../models/research.model';
+import {DbService} from '../../services/db.service';
 
 @Component({
   selector: 'save-page',
@@ -10,16 +11,12 @@ import {Person} from '../../models/person.model';
 
 export class SavePage implements OnInit {
   data: any;
-  typeResearch: TypeResearch;
-  person: Person = {
-    lastName: '',
-    firstName: '',
-    middleName: '',
-    dt: (new Date()).toISOString()
-  };
+  typeResearch: ResearchType;
+  research: Research = new Research();
 
   constructor(public navCtrl: NavController,
-              private navParams: NavParams) {
+              private navParams: NavParams,
+              private dbService: DbService) {
 
   }
 
@@ -29,7 +26,7 @@ export class SavePage implements OnInit {
   }
 
   save() {
-    console.log(this.person, 'person');
+    this.dbService.addResearch(this.typeResearch, this.research, this.data);
     this.navCtrl.popToRoot();
   }
 

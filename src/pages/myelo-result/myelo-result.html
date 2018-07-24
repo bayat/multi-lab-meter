@@ -6,9 +6,9 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
-  <ion-list *ngIf="showResult">
-    <ion-item *ngFor="let i of cytoData">
+<ion-content *ngIf="showResult" padding>
+  <ion-list>
+    <ion-item *ngFor="let i of myeloData">
       <ion-thumbnail item-start>
         <img src="{{i.img}}">
       </ion-thumbnail>
@@ -17,7 +17,7 @@
           <h2 text-wrap>{{i.title}}</h2>
         </ion-col>
         <ion-col col-3 text-right>
-          <ion-badge [color]="getColorByItem(i)">{{i.value}}</ion-badge>
+          <ion-badge color="primary">{{i.value}}</ion-badge>
         </ion-col>
       </ion-row>
     </ion-item>

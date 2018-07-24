@@ -10,17 +10,17 @@
 
     <ion-item>
       <ion-label floating>Фамилия</ion-label>
-      <ion-input type="text" [(ngModel)]="person.lastName"></ion-input>
+      <ion-input type="text" [(ngModel)]="research.lastName"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Имя</ion-label>
-      <ion-input type="text" [(ngModel)]="person.firstName"></ion-input>
+      <ion-input type="text" [(ngModel)]="research.firstName"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Отчество</ion-label>
-      <ion-input type="text" [(ngModel)]="person.middleName"></ion-input>
+      <ion-input type="text" [(ngModel)]="research.middleName"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -28,7 +28,7 @@
       <ion-datetime displayFormat="DD/MM/YYYY"
                     [cancelText]="'Отмена'"
                     [doneText]="'Готово'"
-                    [(ngModel)]="person.dt">
+                    [(ngModel)]="research.dt">
       </ion-datetime>
     </ion-item>
 

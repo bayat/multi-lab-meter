@@ -1,17 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {SavePage} from '../save/save';
-import {CytoData} from '../../data';
+import {LeycoData} from '../../data';
 import {ResearchType} from '../../enums/research-type.enum';
 import {Indicator} from '../../models/indicator.model';
 
 @Component({
-  selector: 'cyto-result-page',
-  templateUrl: './cyto-result.html'
+  selector: 'leyco-result-page',
+  templateUrl: './leyco-result.html'
 })
-export class CytoResultPage implements OnInit {
+export class LeycoResultPage implements OnInit {
   data: any;
-  cytoData: Indicator[] = CytoData;
+  leycoData: Indicator[] = LeycoData;
   showResult = false;
   saved: boolean;
 
@@ -26,7 +26,7 @@ export class CytoResultPage implements OnInit {
   }
 
   setValues() {
-    this.cytoData.forEach((value, index, array) => {
+    this.leycoData.forEach((value, index, array) => {
       array[index].value = this.data[value.id] || 0;
     });
     this.showResult = true;
@@ -45,6 +45,6 @@ export class CytoResultPage implements OnInit {
   }
 
   openSavePage() {
-    this.navCtrl.push(SavePage, {data: this.cytoData, type: ResearchType.CYTO})
+    this.navCtrl.push(SavePage, {data: this.leycoData, type: ResearchType.LEYCO})
   }
 }

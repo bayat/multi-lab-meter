@@ -5,6 +5,9 @@
       true
     ]
   },
+  "ignoreRules": {
+    "TS2307": true
+  },
   "rulesDirectory": [
     "node_modules/tslint-eslint-rules/dist/rules"
   ]

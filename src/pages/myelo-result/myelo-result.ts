@@ -1,22 +1,25 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {SavePage} from '../save/save';
-import {CytoData} from '../../data';
+import {MyeloData} from '../../data';
 import {ResearchType} from '../../enums/research-type.enum';
 import {Indicator} from '../../models/indicator.model';
+import {UtilsService} from '../../services/utils.service';
 
 @Component({
-  selector: 'cyto-result-page',
-  templateUrl: './cyto-result.html'
+  selector: 'myelo-result-page',
+  templateUrl: './myelo-result.html'
 })
-export class CytoResultPage implements OnInit {
+export class MyeloResultPage implements OnInit {
   data: any;
-  cytoData: Indicator[] = CytoData;
+  myeloData: Indicator[] = MyeloData;
   showResult = false;
   saved: boolean;
+  result: number;
 
   constructor(public navCtrl: NavController,
-              private navParams: NavParams) {
+              private navParams: NavParams,
+              private utilsService: UtilsService) {
   }
 
   ngOnInit() {
@@ -26,25 +29,14 @@ export class CytoResultPage implements OnInit {
   }
 
   setValues() {
-    this.cytoData.forEach((value, index, array) => {
+    this.myeloData.forEach((value, index, array) => {
       array[index].value = this.data[value.id] || 0;
     });
+    this.result = this.utilsService.getResultByMyeloIndicators(this.myeloData);
     this.showResult = true;
   }
 
-  getColorByItem(item: Indicator): string {
-    if (item.min !== undefined && item.max) {
-      if (item.value >= item.min && item.value <= item.max) {
-        return 'secondary';
-      } else {
-        return 'danger'
-      }
-    } else {
-      return 'primary';
-    }
-  }
-
   openSavePage() {
-    this.navCtrl.push(SavePage, {data: this.cytoData, type: ResearchType.CYTO})
+    this.navCtrl.push(SavePage, {data: this.myeloData, type: ResearchType.MYELO})
   }
 }

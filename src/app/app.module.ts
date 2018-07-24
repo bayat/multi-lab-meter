@@ -15,6 +15,9 @@ import {CytoResultPage} from '../pages/cyto-result/cyto-result';
 import {SavePage} from '../pages/save/save';
 import {SQLite} from '@ionic-native/sqlite';
 import {DbService} from '../services/db.service';
+import {UtilsService} from '../services/utils.service';
+import {MyeloResultPage} from '../pages/myelo-result/myelo-result';
+import {LeycoResultPage} from '../pages/leyco-result/leyco-result';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,8 @@ import {DbService} from '../services/db.service';
     LeycoPage,
     ArchivePage,
     CytoResultPage,
+    MyeloResultPage,
+    LeycoResultPage,
     SavePage
   ],
   imports: [
@@ -41,6 +46,8 @@ import {DbService} from '../services/db.service';
     LeycoPage,
     ArchivePage,
     CytoResultPage,
+    MyeloResultPage,
+    LeycoResultPage,
     SavePage
   ],
   providers: [
@@ -48,7 +55,8 @@ import {DbService} from '../services/db.service';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SQLite,
-    DbService
+    DbService,
+    UtilsService
   ]
 })
 export class AppModule {

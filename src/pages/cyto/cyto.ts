@@ -1,15 +1,15 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {CytoResultPage} from '../cyto-result/cyto-result';
-import {BecIndicator} from '../../models/bec-indicator.model';
-import {BecIndicators} from '../../data/bec.data';
+import {CytoData} from '../../data';
+import {Indicator} from '../../models/indicator.model';
 
 @Component({
   selector: 'cyto-page',
   templateUrl: 'cyto.html'
 })
 export class CytoPage {
-  indicators: BecIndicator[] = BecIndicators;
+  indicators: Indicator[] = CytoData;
   counter = 0;
   results = {};
 
@@ -17,7 +17,7 @@ export class CytoPage {
 
   }
 
-  addItem(item: BecIndicator) {
+  addItem(item: Indicator) {
     if (this.results[item.id]) {
       this.results[item.id]++;
     } else {

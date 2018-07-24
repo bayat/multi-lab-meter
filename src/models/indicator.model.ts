@@ -1,9 +1,9 @@
-export class BecIndicator {
+export class Indicator {
   id: string;
   title: string;
   img: string;
-  counterIgnore?: boolean;
   value?: number;
+  counterIgnore?: boolean;
   min?: number;
   max?: number;
 }
