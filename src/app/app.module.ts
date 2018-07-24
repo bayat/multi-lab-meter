@@ -18,6 +18,7 @@ import {DbService} from '../services/db.service';
 import {UtilsService} from '../services/utils.service';
 import {MyeloResultPage} from '../pages/myelo-result/myelo-result';
 import {LeycoResultPage} from '../pages/leyco-result/leyco-result';
+import {SQLiteMock} from '../services/sqlite-object';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,9 @@ import {LeycoResultPage} from '../pages/leyco-result/leyco-result';
     SQLite,
     DbService,
     UtilsService
+    //SQLite,
+    {provide: SQLite, useClass: SQLiteMock},
+    DbService
   ]
 })
 export class AppModule {

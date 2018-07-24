@@ -14,6 +14,10 @@ export class DbService {
     this.initDb();
   }
 
+  getDb(): SQLiteObject {
+    return this.db;
+  }
+
   initDb() {
     this.sqlite.create({
       name: 'data.db',
@@ -35,7 +39,7 @@ export class DbService {
           .catch(e => console.log(e));
 
         db.executeSql(`
-          CREATE TABLE IF NOT EXIST cyto(
+          CREATE TABLE IF NOT EXISTS cyto(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             researchId INTEGER NOT NULL,
             ind_1 INTEGER NOT NULL,
