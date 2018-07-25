@@ -3,8 +3,6 @@ import {NavController, NavParams} from 'ionic-angular';
 import {ResearchType} from '../../enums/research-type.enum';
 import {Research} from '../../models/research.model';
 import {DbService} from '../../services/db.service';
-import {SQLite} from '@ionic-native/sqlite';
-import {SQLiteObject} from '../../services/sqlite-object';
 
 @Component({
   selector: 'save-page',

@@ -10,7 +10,6 @@ export class SQLiteObject {
   };
 
   executeSql(statement: string, params: any): Promise<any> {
-
     return new Promise((resolve, reject) => {
       try {
         var st = this._objectInstance.prepare(statement, params);
@@ -31,7 +30,7 @@ export class SQLiteObject {
         };
         //save database after each sql query
         var arr: ArrayBuffer = this._objectInstance.export();
-        localStorage.setItem("database", String(arr));
+        localStorage.setItem('database', String(arr));
         resolve(payload);
       } catch (e) {
         reject(e);
@@ -62,7 +61,7 @@ export class SQLiteObject {
         };
         //save database after each sql query
         var arr: ArrayBuffer = this._objectInstance.export();
-        localStorage.setItem("database", String(arr));
+        localStorage.setItem('database', String(arr));
         resolve(payload);
       } catch (e) {
         reject(e);
@@ -74,7 +73,7 @@ export class SQLiteObject {
 export class SQLiteMock {
   public create(config: SQLiteDatabaseConfig): Promise<SQLiteObject> {
     var db;
-    var storeddb = localStorage.getItem("database");
+    var storeddb = localStorage.getItem('database');
 
     if (storeddb) {
       var arr = storeddb.split(',');

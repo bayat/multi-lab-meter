@@ -55,12 +55,10 @@ import {SQLiteMock} from '../services/sqlite-object';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SQLite,
+    {provide: SQLite, useClass: SQLiteMock},
+    //SQLite,
     DbService,
     UtilsService
-    //SQLite,
-    {provide: SQLite, useClass: SQLiteMock},
-    DbService
   ]
 })
 export class AppModule {
