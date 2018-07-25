@@ -8,6 +8,7 @@
 </ion-header>
 <ion-content *ngIf="showResult" padding>
   <ion-list>
+    <h1 ion-text text-center color="primary">{{getResultText()}}</h1>
     <ion-item *ngFor="let i of myeloData">
       <ion-thumbnail item-start>
         <img src="{{i.img}}">

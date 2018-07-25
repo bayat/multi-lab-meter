@@ -16,6 +16,8 @@ export class MyeloResultPage implements OnInit {
   showResult = false;
   saved: boolean;
   result: number;
+  minVal = 2.23;
+  maxVal = 2.89;
 
   constructor(public navCtrl: NavController,
               private navParams: NavParams,
@@ -34,6 +36,16 @@ export class MyeloResultPage implements OnInit {
     });
     this.result = this.utilsService.getResultByMyeloIndicators(this.myeloData);
     this.showResult = true;
+  }
+
+  public getResultText(): string {
+    if (this.result < this.minVal) {
+      return `Результат: ${this.result}. Ниже нормы`;
+    } else if (this.result > this.maxVal) {
+      return `Результат: ${this.result}. Выше нормы`;
+    } else {
+      return `Результат: ${this.result}`;
+    }
   }
 
   openSavePage() {
