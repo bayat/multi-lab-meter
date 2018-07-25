@@ -4,12 +4,14 @@ import {Research} from '../models/research.model';
 import {Indicator} from '../models/indicator.model';
 import {ResearchType} from '../enums/research-type.enum';
 import {UtilsService} from './utils.service';
+import {AlertController} from 'ionic-angular';
 
 @Injectable()
 export class DbService {
   private db: SQLiteObject;
 
   constructor(private sqlite: SQLite,
+              private alertCtrl: AlertController,
               private utilsService: UtilsService) {
     this.initDb();
   }
@@ -35,8 +37,7 @@ export class DbService {
             dt TEXT,
             researchType INTEGER)
         `)
-          .then(() => console.log('Executed SQL'))
-          .catch(e => console.log(e));
+          .catch(this.showError);
 
         db.executeSql(`
           CREATE TABLE IF NOT EXISTS cyto(
@@ -58,11 +59,10 @@ export class DbService {
             FOREIGN KEY(researchId) REFERENCES researches(id)
           )
         `)
-          .then(() => console.log('Executed SQL'))
-          .catch(e => console.log(e));
+          .catch(this.showError);
 
         db.executeSql(`
-          CREATE TABLE IF NOT EXIST myelo(
+          CREATE TABLE IF NOT EXISTS myelo(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             researchId INTEGER NOT NULL,
             ind_1 INTEGER NOT NULL,
@@ -74,11 +74,10 @@ export class DbService {
             FOREIGN KEY(researchId) REFERENCES researches(id)
           )
         `)
-          .then(() => console.log('Executed SQL'))
-          .catch(e => console.log(e));
+          .catch(this.showError);
 
         db.executeSql(`
-          CREATE TABLE IF NOT EXIST leyco(
+          CREATE TABLE IF NOT EXISTS leyco(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             researchId INTEGER NOT NULL,
             ind_1 INTEGER NOT NULL,
@@ -91,34 +90,62 @@ export class DbService {
             FOREIGN KEY(researchId) REFERENCES researches(id)
           )
         `)
-          .then(() => console.log('Executed SQL'))
-          .catch(e => console.log(e));
+          .catch(this.showError);
 
       })
-      .catch(e => console.log(e));
+      .catch(this.showError);
   }
 
   addResearch(researchType: ResearchType, researchData: Research, values: Indicator[]) {
-    if (researchType == ResearchType.CYTO) {
-      this.addCytoResearch(researchData, values);
-    } else if (researchType == ResearchType.MYELO) {
-      this.addMyeloResearch(researchData, values);
-    } else if (researchType == ResearchType.LEYCO) {
-      this.addLeycoResearch(researchData, values);
-    }
+    this.db.executeSql(`insert into researches(lastName,firstName,middleName,dt,researchType) values (?,?,?,?,?)`,
+      [researchData.lastName, researchData.firstName, researchData.middleName, researchData.dt, researchType])
+      .then(data => {
+        let researchId = data.insertId;
+        if (researchType == ResearchType.CYTO) {
+          this.addCytoValues(researchId, values);
+        } else if (researchType == ResearchType.MYELO) {
+          this.addMyeloValues(researchId, values);
+        } else if (researchType == ResearchType.LEYCO) {
+          this.addLeycoValues(researchId, values);
+        }
+      })
+      .catch(this.showError);
   }
 
-  addCytoResearch(researchData: Research, values: Indicator[]) {
-
+  addCytoValues(researchId: number, values: Indicator[]) {
+    let params = [];
+    params.push(researchId);
+    values.forEach(value => params.push(value.value));
+    this.db.executeSql(`
+        INSERT INTO cyto(researchId,ind_1,ind_2,ind_3,ind_4,ind_5,ind_6,ind_7,ind_8,ind_9,ind_10,ind_11,ind_12,ind_13)
+        VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)`, params)
+      .catch(this.showError)
   }
 
-  addMyeloResearch(researchData: Research, values: Indicator[]) {
-    let result = this.utilsService.getResultByMyeloIndicators(values);
-
+  addMyeloValues(researchId: number, values: Indicator[]) {
+    let result = this.utilsService.getMyeloResult(values);
+    let params = [];
+    params.push(researchId);
+    values.forEach(value => params.push(value.value));
+    params.push(result);
+    this.db.executeSql(`
+        INSERT INTO myelo(researchId,ind_1,ind_2,ind_3,ind_4,ind_5,result)
+        VALUES(?,?,?,?,?,?,?)`, params)
+      .catch(this.showError)
   }
 
-  addLeycoResearch(researchData: Research, values: Indicator[]) {
+  addLeycoValues(researchId: number, values: Indicator[]) {
+    let params = [];
+    params.push(researchId);
+    values.forEach(value => params.push(value.value));
+    this.db.executeSql(`
+        INSERT INTO leyco(researchId,ind_1,ind_2,ind_3,ind_4,ind_5,ind_6,ind_7)
+        VALUES(?,?,?,?,?,?,?,?)`, params)
+      .catch(this.showError)
+  }
 
+  showError(errorMessage) {
+    this.alertCtrl.create({subtitle: errorMessage, buttons: ['OK']}).present();
   }
 
 

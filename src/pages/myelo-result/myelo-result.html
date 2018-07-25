@@ -6,8 +6,8 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content *ngIf="showResult" padding>
-  <ion-list>
+<ion-content padding>
+  <ion-list *ngIf="showResult">
     <h1 ion-text text-center color="primary">{{getResultText()}}</h1>
     <ion-item *ngFor="let i of myeloData">
       <ion-thumbnail item-start>
