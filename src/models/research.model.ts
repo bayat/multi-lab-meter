@@ -1,5 +1,5 @@
 export class Research {
-  id: string = null;
+  id: number = null;
   lastName: string = '';
   firstName: string = '';
   middleName: string = '';

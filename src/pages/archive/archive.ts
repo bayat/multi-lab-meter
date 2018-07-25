@@ -3,6 +3,9 @@ import {NavController} from 'ionic-angular';
 import {DbService} from '../../services/db.service';
 import {Research} from '../../models/research.model';
 import {ResearchType} from '../../enums/research-type.enum';
+import {CytoResultPage} from '../cyto-result/cyto-result';
+import {MyeloResultPage} from '../myelo-result/myelo-result';
+import {LeycoResultPage} from '../leyco-result/leyco-result';
 
 @Component({
   selector: 'archive-page',
@@ -41,8 +44,27 @@ export class ArchivePage {
     }
   }
 
-  openResultPage(item: Research) {
-
+  openResultPage(research: Research) {
+    this.dbService.getResearchValues(research.id, research.researchType)
+      .then(researchValues => {
+        let data = {};
+        if (research.researchType == ResearchType.CYTO) {
+          for (let i = 1; i <= 13; i++) {
+            data[i] = researchValues['ind_' + i];
+          }
+          this.navCtrl.push(CytoResultPage, {data: data, saved: true})
+        } else if (research.researchType == ResearchType.MYELO) {
+          for (let i = 1; i <= 5; i++) {
+            data[i] = researchValues['ind_' + i];
+          }
+          this.navCtrl.push(MyeloResultPage, {data: data, saved: true})
+        } else if (research.researchType == ResearchType.LEYCO) {
+          for (let i = 1; i <= 7; i++) {
+            data[i] = researchValues['ind_' + i];
+          }
+          this.navCtrl.push(LeycoResultPage, {data: data, saved: true})
+        }
+      });
   }
 
   getItems(ev: any) {

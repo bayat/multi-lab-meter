@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="primary" [hideBackButton]="true">
+  <ion-navbar color="primary" [hideBackButton]="!saved">
     <ion-title>Результаты</ion-title>
     <ion-buttons *ngIf="!saved" end>
       <button ion-button (click)="openSavePage()">Сохранить</button>

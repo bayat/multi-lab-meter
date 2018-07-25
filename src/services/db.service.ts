@@ -165,6 +165,24 @@ export class DbService {
       .catch(this.showError.bind(this))
   }
 
+  getResearchValues(researchId: number, researchType: ResearchType): Promise<any> {
+    if (researchType == ResearchType.CYTO) {
+      return this.getValuesByTableNameAndResearchId('cyto', researchId);
+    } else if (researchType == ResearchType.MYELO) {
+      return this.getValuesByTableNameAndResearchId('myelo', researchId);
+    } else if (researchType == ResearchType.LEYCO) {
+      return this.getValuesByTableNameAndResearchId('leyco', researchId);
+    }
+  }
+
+  getValuesByTableNameAndResearchId(tableName: string, researchId: number): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.db.executeSql(`SELECT * FROM ${tableName} WHERE researchId = ?`, [researchId])
+        .then(data => resolve(data.rows.item(0)))
+        .catch(error => reject(error))
+    });
+  }
+
   showError(error) {
     this.alertCtrl.create({title: 'Ошибка', subTitle: error.message, buttons: ['OK']}).present();
   }

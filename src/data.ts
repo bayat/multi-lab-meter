@@ -22,6 +22,15 @@ export const CytoData: Indicator[] = [
   {id: '13', title: 'Многоядерная клетка', img: 'assets/img/cyto/multinuclear.jpg', counterIgnore: true}
 ];
 
+
+export const MyeloData: Indicator[] = [
+  {id: '1', title: '0', img: 'assets/img/myelo/zero.jpg'},
+  {id: '2', title: '1', img: 'assets/img/myelo/one.jpg'},
+  {id: '3', title: '2', img: 'assets/img/myelo/two.jpg'},
+  {id: '4', title: '3', img: 'assets/img/myelo/three.jpg'},
+  {id: '5', title: '4', img: 'assets/img/myelo/four.jpg'}
+];
+
 export const LeycoData: Indicator[] = [
   {id: '1', title: 'Юные нейтрофильные гранулоциты', img: 'assets/img/leyco/neutrophilous_granulocytes.jpg', min: 0, max: 0.5},
   {id: '2', title: 'Палочкоядерные', img: 'assets/img/leyco/stab.jpg', min: 3, max: 5},
@@ -30,12 +39,4 @@ export const LeycoData: Indicator[] = [
   {id: '5', title: 'Базофилы', img: 'assets/img/leyco/basophil.jpg', min: 0.5, max: 10},
   {id: '6', title: 'Моноциты', img: 'assets/img/leyco/monocyte.jpg', min: 6, max: 8},
   {id: '7', title: 'Лимфоциты', img: 'assets/img/leyco/lymphocytes.jpg', min: 20, max: 35},
-];
-
-export const MyeloData: Indicator[] = [
-  {id: '1', title: '0', img: 'assets/img/myelo/zero.jpg'},
-  {id: '2', title: '1', img: 'assets/img/myelo/one.jpg'},
-  {id: '3', title: '2', img: 'assets/img/myelo/two.jpg'},
-  {id: '4', title: '3', img: 'assets/img/myelo/three.jpg'},
-  {id: '5', title: '4', img: 'assets/img/myelo/four.jpg'}
 ];
