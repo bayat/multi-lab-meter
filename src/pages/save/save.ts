@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
-import {ResearchType} from '../../enums/research-type.enum';
 import {Research} from '../../models/research.model';
 import {DbService} from '../../services/db.service';
 
@@ -11,7 +10,6 @@ import {DbService} from '../../services/db.service';
 
 export class SavePage implements OnInit {
   data: any;
-  typeResearch: ResearchType;
   research: Research = new Research();
 
   constructor(public navCtrl: NavController,
@@ -22,11 +20,11 @@ export class SavePage implements OnInit {
 
   ngOnInit() {
     this.data = this.navParams.get('data');
-    this.typeResearch = this.navParams.get('type');
+    this.research.researchType = this.navParams.get('type');
   }
 
   save() {
-    this.dbService.addResearch(this.typeResearch, this.research, this.data);
+    this.dbService.addResearch(this.research, this.data);
     this.navCtrl.popToRoot();
   }
 

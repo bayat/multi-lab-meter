@@ -37,7 +37,10 @@ export class DbService {
             dt TEXT,
             researchType INTEGER)
         `)
-          .catch(this.showError);
+          .then(() => {
+          })
+          .catch(() => {
+          });
 
         db.executeSql(`
           CREATE TABLE IF NOT EXISTS cyto(
@@ -59,7 +62,10 @@ export class DbService {
             FOREIGN KEY(researchId) REFERENCES researches(id)
           )
         `)
-          .catch(this.showError);
+          .then(() => {
+          })
+          .catch(() => {
+          });
 
         db.executeSql(`
           CREATE TABLE IF NOT EXISTS myelo(
@@ -74,7 +80,10 @@ export class DbService {
             FOREIGN KEY(researchId) REFERENCES researches(id)
           )
         `)
-          .catch(this.showError);
+          .then(() => {
+          })
+          .catch(() => {
+          });
 
         db.executeSql(`
           CREATE TABLE IF NOT EXISTS leyco(
@@ -90,13 +99,19 @@ export class DbService {
             FOREIGN KEY(researchId) REFERENCES researches(id)
           )
         `)
-          .catch(this.showError);
+          .then(() => {
+          })
+          .catch(() => {
+          });
 
       })
-      .catch(this.showError);
+      .then(() => {
+      })
+      .catch(this.showError.bind(this));
   }
 
-  addResearch(researchType: ResearchType, researchData: Research, values: Indicator[]) {
+  addResearch(researchData: Research, values: Indicator[]) {
+    let researchType = researchData.researchType;
     this.db.executeSql(`insert into researches(lastName,firstName,middleName,dt,researchType) values (?,?,?,?,?)`,
       [researchData.lastName, researchData.firstName, researchData.middleName, researchData.dt, researchType])
       .then(data => {
@@ -109,7 +124,7 @@ export class DbService {
           this.addLeycoValues(researchId, values);
         }
       })
-      .catch(this.showError);
+      .catch(this.showError.bind(this));
   }
 
   addCytoValues(researchId: number, values: Indicator[]) {
@@ -119,7 +134,9 @@ export class DbService {
     this.db.executeSql(`
         INSERT INTO cyto(researchId,ind_1,ind_2,ind_3,ind_4,ind_5,ind_6,ind_7,ind_8,ind_9,ind_10,ind_11,ind_12,ind_13)
         VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)`, params)
-      .catch(this.showError)
+      .then(data => {
+      })
+      .catch(this.showError.bind(this))
   }
 
   addMyeloValues(researchId: number, values: Indicator[]) {
@@ -131,7 +148,9 @@ export class DbService {
     this.db.executeSql(`
         INSERT INTO myelo(researchId,ind_1,ind_2,ind_3,ind_4,ind_5,result)
         VALUES(?,?,?,?,?,?,?)`, params)
-      .catch(this.showError)
+      .then(data => {
+      })
+      .catch(this.showError.bind(this))
   }
 
   addLeycoValues(researchId: number, values: Indicator[]) {
@@ -141,11 +160,13 @@ export class DbService {
     this.db.executeSql(`
         INSERT INTO leyco(researchId,ind_1,ind_2,ind_3,ind_4,ind_5,ind_6,ind_7)
         VALUES(?,?,?,?,?,?,?,?)`, params)
-      .catch(this.showError)
+      .then(data => {
+      })
+      .catch(this.showError.bind(this))
   }
 
-  showError(errorMessage) {
-    this.alertCtrl.create({subtitle: errorMessage, buttons: ['OK']}).present();
+  showError(error) {
+    this.alertCtrl.create({title: 'Ошибка', subTitle: error.message, buttons: ['OK']}).present();
   }
 
 

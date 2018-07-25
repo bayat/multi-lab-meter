@@ -10,20 +10,20 @@ export const CytoData: Indicator[] = [
     max: 2
   },
   {id: '3', title: 'Кареорексис', img: 'assets/img/cyto/coriorexis.jpg', min: 1, max: 7},
-  //{id: '4', title: 'Безъядерные клетки', img: 'assets/img/cyto/', min: 0, max: 2},
-  //{id: '5', title: 'ДНЛ', img: 'assets/img/cyto/', min: 0, max: 12},
+  {id: '4', title: 'Безъядерные клетки', img: 'assets/img/cyto/', min: 0, max: 2},
+  {id: '5', title: 'ДНЛ', img: 'assets/img/cyto/', min: 0, max: 12},
   {id: '6', title: 'Двуядерные клетки', img: 'assets/img/cyto/binuclear.jpg', min: 0, max: 4},
   {id: '7', title: 'Вакуольная дистрофия', img: 'assets/img/cyto/vacuolar_degeneration.jpg', min: 0, max: 4},
   {id: '8', title: 'Тучные клетки', img: 'assets/img/cyto/mast_cells.jpg', min: 0, max: 6},
   {id: '9', title: 'Обсемененность микрофлорой', img: 'assets/img/cyto/microflora_dissemination.jpg', min: 5, max: 12},
   {id: '10', title: 'Центральная ядерная перетяжка', img: 'assets/img/cyto/central_core.jpg', counterIgnore: true},
-  //{id: '11', title: 'Микроядро', img: 'assets/img/cyto/', counterIgnore: true},
+  {id: '11', title: 'Микроядро', img: 'assets/img/cyto/', counterIgnore: true},
   {id: '12', title: 'Протрузии', img: 'assets/img/cyto/protrusion.jpg', counterIgnore: true},
   {id: '13', title: 'Многоядерная клетка', img: 'assets/img/cyto/multinuclear.jpg', counterIgnore: true}
 ];
 
 export const LeycoData: Indicator[] = [
-  // {id: '1', title: 'Юные нейтрофильные гранулоциты', img: 'assets/img/leyco/neutrophilous_granulocytes.jpg', min: 0, max: 0.5},
+  {id: '1', title: 'Юные нейтрофильные гранулоциты', img: 'assets/img/leyco/neutrophilous_granulocytes.jpg', min: 0, max: 0.5},
   {id: '2', title: 'Палочкоядерные', img: 'assets/img/leyco/stab.jpg', min: 3, max: 5},
   {id: '3', title: 'Сегментоядерные', img: 'assets/img/leyco/segment_nuclear.jpg', min: 65, max: 70},
   {id: '4', title: 'Эозинофилы', img: 'assets/img/leyco/eosin.jpg', min: 1, max: 5},

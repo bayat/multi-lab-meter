@@ -4,6 +4,7 @@ export class Research {
   firstName: string = '';
   middleName: string = '';
   dt: string = (new Date()).toISOString();
+  researchType: number;
 
   public constructor(object?: Partial<Research>) {
     Object.assign(this, object);

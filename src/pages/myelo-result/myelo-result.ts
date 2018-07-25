@@ -34,7 +34,7 @@ export class MyeloResultPage implements OnInit {
     this.myeloData.forEach((value, index, array) => {
       array[index].value = this.data[value.id] || 0;
     });
-    this.result = this.utilsService.getResultByMyeloIndicators(this.myeloData);
+    this.result = this.utilsService.getMyeloResult(this.myeloData);
     this.showResult = true;
   }
 
