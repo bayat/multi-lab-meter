@@ -113,7 +113,7 @@ export class DbService {
   addResearch(researchData: Research, values: Indicator[]) {
     let researchType = researchData.researchType;
     this.db.executeSql(`insert into researches(lastName,firstName,middleName,dt,researchType) values (?,?,?,?,?)`,
-      [researchData.lastName, researchData.firstName, researchData.middleName, researchData.dt, researchType])
+      [researchData.lastName.toUpperCase(), researchData.firstName.toUpperCase(), researchData.middleName.toUpperCase(), researchData.dt, researchType])
       .then(data => {
         let researchId = data.insertId;
         if (researchType == ResearchType.CYTO) {

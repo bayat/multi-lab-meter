@@ -20,7 +20,7 @@ export class ArchivePage {
 
   searchItems(inputText: string) {
     if (inputText) {
-      this.dbService.getDb().executeSql(`SELECT * FROM researches WHERE LOWER(lastName) LIKE ? ORDER BY DT DESC`, ['%' + inputText.toLowerCase() + '%'])
+      this.dbService.getDb().executeSql(`SELECT * FROM researches WHERE lastName LIKE ? ORDER BY DT DESC`, ['%' + inputText.toUpperCase() + '%'])
         .then(data => {
           this.items = [];
           if (data.rows.length > 0) {

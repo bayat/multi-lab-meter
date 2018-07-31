@@ -1,6 +1,10 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Счетчик: {{counter}}</ion-title>
+    <ion-row>
+      <ion-title>Счетчик: {{counter}}</ion-title>
+      <button ion-button [color]="isActiveLimit(100)" (click)="setLimit(100)">100</button>
+      <button ion-button [color]="isActiveLimit(1000)" (click)="setLimit(1000)">1000</button>
+    </ion-row>
   </ion-navbar>
 </ion-header>
 <ion-content padding>

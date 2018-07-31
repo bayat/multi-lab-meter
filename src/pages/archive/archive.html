@@ -7,7 +7,7 @@
   <ion-list>
     <ion-item *ngFor="let item of items" (click)="openResultPage(item)">
       <h2 ion-text color="primary">{{item.lastName}} {{item.firstName}} {{item.middleName}}</h2>
-      <p>{{item.dt | date}} {{getResearchTypeName(item.researchType)}}</p>
+      <p>{{item.dt | date: 'dd/MM/yyyy'}} {{getResearchTypeName(item.researchType)}}</p>
     </ion-item>
   </ion-list>
 </ion-content>

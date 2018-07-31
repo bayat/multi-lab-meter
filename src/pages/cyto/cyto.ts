@@ -12,6 +12,7 @@ export class CytoPage {
   indicators: Indicator[] = CytoData;
   counter = 0;
   results = {};
+  counterLimit = 100;
 
   constructor(public navCtrl: NavController) {
 
@@ -35,9 +36,19 @@ export class CytoPage {
   }
 
   checkFinish() {
-    if (this.counter == 10) {
+    if (this.counter == this.counterLimit) {
       this.navCtrl.push(CytoResultPage, {data: this.results, saved: false});
     }
+  }
+
+  setLimit(limit: number) {
+    if (this.counter < limit) {
+      this.counterLimit = limit;
+    }
+  }
+
+  isActiveLimit(limit: number) {
+    return this.counterLimit == limit ? 'secondary' : 'primary';
   }
 
 }

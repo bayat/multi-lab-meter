@@ -33,7 +33,7 @@ export class LeycoPage {
   }
 
   checkFinish() {
-    if (this.counter == 10) {
+    if (this.counter == 100) {
       this.navCtrl.push(LeycoResultPage, {data: this.results, saved: false});
     }
   }

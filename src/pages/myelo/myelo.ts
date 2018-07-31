@@ -33,7 +33,7 @@ export class MyeloPage {
   }
 
   checkFinish() {
-    if (this.counter == 10) {
+    if (this.counter == 100) {
       this.navCtrl.push(MyeloResultPage, {data: this.results, saved: false});
     }
   }
